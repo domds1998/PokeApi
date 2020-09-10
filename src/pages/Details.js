@@ -1,13 +1,33 @@
 import React, { Component } from "react"
-import { Container, LeftBox, MiddleBox, RightBox, Name, Description } from "../styles/detailsStyles";
-import { Header, Button } from "../styles/appStyles";
+import { Container, LeftBox, MiddleBox, RightBox, Name, Description, Header, Img} from "../styles/detailsStyles";
+import { Button } from "../styles/appStyles";
 import { PokeTable as Table } from "../components/Table";
 import logoUrl from "../materials/logo.png";
 import pokeUrl from "../materials/poke.png";
 import Image from "../components/Image";
 
 class Details extends Component {
-    state = {}
+    state = {
+        pokemonId: 1,
+        img: null
+    }
+
+    componentDidMount() {
+        const id = parseInt(this.props.match.params.pokemonId, 10);
+        if(id == NaN) id = parseInt(1);
+
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+      .then(response => response.json())
+      .then(json => {
+          console.log(json.sprites.front_default)
+            this.setState({
+                pokemonId: id,
+                img: json.sprites.other.dream_world.front_default
+            });
+        }).catch(err => console.log("Error in first Fetch: " + err));
+
+    }
+
     render() {
         return (
             <>
@@ -17,11 +37,9 @@ class Details extends Component {
                     </LeftBox>
                     <MiddleBox>
                         <Header>
-                            {/* <Image url={logoUrl} width="70%" height="150px" /> */}
                             <img alt="logo" src={logoUrl}></img>
                         </Header>
-                        {/* <Image url={pokeUrl} width="100%" height="60vh" /> */}
-                        <img alt="image" src={pokeUrl}></img>
+                            <Img src={this.state.img} width="80%"/> 
                         <Name>
                             001 Bullbasaur
                         </Name>
@@ -44,7 +62,7 @@ class Details extends Component {
                     </RightBox>
                 </Container>
                 <Button to="/" fixed bottom="4vh" left="40px"><b>&#60; Powrót</b></Button>
-                <Button to="/details" fixed bottom="4vh" right="40px"><b>Następny &#62;</b></Button>
+                <Button to={`/details/${(this.state.pokemonId+1)}`} fixed bottom="4vh" right="40px"><b>Następny &#62;</b></Button>
             </>
         );
     }

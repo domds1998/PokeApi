@@ -2,16 +2,32 @@ import React, { Component } from "react";
 import {NavBarList, NavBarItem} from "../styles/appStyles";
 
 class NavBar extends Component {
-    state = {}
+    state = {
+        currentPage: 1
+    }
+
+
+
+    prepareNavBar = () => {
+        const items = [];
+
+        for(let index = 1; index <= this.props.numberOfPages; index++){
+            let isCurrent = (index == this.state.currentPage);
+            items.push(
+                <NavBarItem key={index} isCurrent={isCurrent} onClick={() => {
+                    this.props.handlePage(index); 
+                    this.setState({currentPage: index});
+                }}>{index}</NavBarItem>
+            );
+        }
+
+        return items;
+    }
+
     render() { 
         return (
             <NavBarList>
-                <NavBarItem>1</NavBarItem>
-                <NavBarItem>2</NavBarItem>
-                <NavBarItem>3</NavBarItem>
-                <NavBarItem>4</NavBarItem>
-                <NavBarItem>5</NavBarItem>
-                <NavBarItem>6</NavBarItem>
+                {this.prepareNavBar()}
             </NavBarList>
         );
     }

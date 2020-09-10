@@ -13,6 +13,7 @@ class App extends Component {
             <GlobalStyle />
             <Route path="/" exact component={Home}></Route>
             <Route path="/details" exact component={Details}></Route>
+            <Route path="/details/:pokemonId" exact component={Details}></Route>
          </>
          </Router>
       );

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Header as BasicHeader} from "../styles/appStyles";
 
 export const Container = styled.div`
   display: flex;
@@ -35,6 +36,10 @@ export const LeftBox = styled(Section)`
 
 export const MiddleBox= styled(Section)`
   width: 40vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   @media (max-width: 768px) {
     order: 1;
@@ -79,11 +84,22 @@ export const Name = styled.div`
   text-align: center;
   text-transform: uppercase;
   font-size: 3vw;
-  margin-top: 20px;
   font-weight: bold;
 `;
 
 export const Description = styled.div`
   width: 100%;
   font-size: 1.9vh;
+`;
+
+export const Header = styled(BasicHeader)`
+  width: 100%;
+`;
+
+export const Img = styled.img`
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: ${props => props.width};
+  height: auto
+  display: block;
 `;

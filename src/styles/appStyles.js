@@ -1,5 +1,5 @@
 import styled, { css, createGlobalStyle } from "styled-components";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const GlobalStyle = createGlobalStyle`
   body{
@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: 'Poppins', sans-serif;
     color: #1a5cb0;
-    font-size: 1.2vw;
+    font-size: 1.1vw;
   }
 
   *, *::before, *::after {
@@ -18,14 +18,14 @@ export const GlobalStyle = createGlobalStyle`
     max-height: 100%;
     max-width: 100%;
     height: auto;
-    width: 100%;
+    width: auto;
   }
 `;
 
 export const StyledItemList = styled.li`
   list-style-type: none;
   width: 100%;
-  padding: 12px;
+  padding: 0;
   text-align: center;
 
   ${(props) =>
@@ -51,12 +51,26 @@ export const StyledItemList = styled.li`
     ${(props) =>
     props.columnItem &&
     css`
+        height: 45px;
         flex-grow: 1;
         flex-basis: 0;
+        padding: 0;
+        line-height: 45px;
+
+        ${(props) =>
+          props.lowercase &&
+          css`
+            text-transform: lowercase;
+          `};
         
     @media (max-width: 768px) {
       margin: 5px;
     }
+    `}
+
+    ${(props) => (props.isHovered && !props.isHeader) &&
+      css`
+          color: yellow;
     `}
 `;
 
@@ -152,6 +166,13 @@ export const NavBarItem = styled.li`
   background-color: yellow;
   font-weight: bold;
   color: #1a5cb0;
+
+  ${(props) =>
+    props.isCurrent &&
+    css`
+    background-color: #1a5cb0;
+    color: yellow;
+    `}
 
   :hover {
     background-color: #1a5cb0;
