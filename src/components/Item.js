@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { StyledItemList, RowList } from "../styles/appStyles";
-import { Link } from 'react-router-dom';
+import { StyledItemList, RowList, ClearLink } from "../styles/appStyles";
+
 
 class Item extends Component {
     state = {
@@ -18,11 +18,10 @@ class Item extends Component {
 
     getContentForEvo = () => {
         if (!this.state.isHovered) return this.props.data.evo;
-        else return <Link to={`/details/${this.props.data.id}`}>więcej &#62;</Link>
+        else return <ClearLink to={`/details/${this.props.data.id}`}>więcej &#62;</ClearLink>
     }
 
     getListItems = () => {
-        console.log(this.state.isHovered);
         return (
             <>
                 <StyledItemList columnItem>{this.props.data.id}</StyledItemList>

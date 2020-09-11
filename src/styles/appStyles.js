@@ -56,12 +56,6 @@ export const StyledItemList = styled.li`
         flex-basis: 0;
         padding: 0;
         line-height: 45px;
-
-        ${(props) =>
-          props.lowercase &&
-          css`
-            text-transform: lowercase;
-          `};
         
     @media (max-width: 768px) {
       margin: 5px;
@@ -201,3 +195,8 @@ export const Button = styled(Link)`
     }
 `;
 
+export const ClearLink = styled(Link)`
+  text-decoration: none;
+  color: yellow;
+  text-transform: lowercase;
+`;

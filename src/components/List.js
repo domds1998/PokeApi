@@ -39,7 +39,7 @@ class List
                 type: details.types[0].type.name,
                 evo: "?"
               });
-              if(jsonData.length == this.state.limit) {
+              if(jsonData.length === this.state.limit) {
                 jsonData.sort((a,b) => a.id - b.id);
                 this.setState({ data: jsonData, numberOfPages: Math.round(this.state.limit/this.state.itemsPerPage)});
               }

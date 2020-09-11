@@ -12,7 +12,7 @@ class NavBar extends Component {
         const items = [];
 
         for(let index = 1; index <= this.props.numberOfPages; index++){
-            let isCurrent = (index == this.state.currentPage);
+            let isCurrent = (index === this.state.currentPage);
             items.push(
                 <NavBarItem key={index} isCurrent={isCurrent} onClick={() => {
                     this.props.handlePage(index); 
